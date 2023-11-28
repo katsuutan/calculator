@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foundation Final: Calculator</title>
+    <script src="calculator.js" defer></script>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <div id="calculator-container">
+        <div id="display-container">Display Here</div>
+
+        <div id="bottom-container">
+            <div id="bottom-left-container">
+                <div id="options"> <!-- Clear and Backspace (<-) -->
+                    <button id="clear">C</button>
+                    <button id="backspace">&lt;-</button>
+                </div>
+                <div id="numpad"> <!-- 0-9 buttons -->
+                    <div> <!-- 7-9 row -->
+                        <button>7</button>
+                        <button>8</button>
+                        <button>9</button>
+                    </div>
+                    <div> <!-- 4-6 row -->
+                        <button>4</button>
+                        <button>5</button>
+                        <button>6</button>
+                    </div>
+                    <div> <!-- 1-3 row -->
+                        <button>1</button>
+                        <button>2</button>
+                        <button>3</button>
+                    </div>
+                    <div> <!-- 0 and decimal row -->
+                        <button>0</button>
+                        <button>.</button>
+                    </div>
+                </div>
+            </div>
+            <div id="bottom-right-container"> <!-- operator buttons-->
+                <button>+</button>
+                <button>-</button>
+                <button>*</button>
+                <button>/</button>
+                <button id="equal">=</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

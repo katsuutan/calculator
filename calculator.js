@@ -29,7 +29,7 @@ const buttonFunction = () => {
     numpadArr.forEach((num) => { // For each number button, add a click that sends its value.
         num.addEventListener('click', function(e) {
             numArr.push(num.value);
-            currentNum = parseInt(numArr.join(''));
+            currentNum = parseFloat(numArr.join(''));
             populateDisplay(currentNum);
         });
     });
@@ -46,7 +46,7 @@ const operatorFunction = () => {
                 if (totalNum && prevOp != '=') {
                     result = operate(totalNum, prevOp, currentNum);
                     populateDisplay(result);
-                    if (Number.isInteger(result)) // Divide by 0 case
+                    if (typeof result === 'number') // Divide by 0 case
                         totalNum = result;
                     else
                         result = totalNum;
@@ -70,7 +70,8 @@ const equalFunction = () => {
             result = operate(totalNum, prevOp, currentNum)
             populateDisplay(result);
             numArr.length = 0;
-            if (Number.isInteger(result)) // Dvide by 0 case
+
+            if (typeof result === 'number') // Divide by 0 case
                 totalNum = result;
             else
                 result = totalNum;
@@ -99,6 +100,16 @@ const backspaceFunction = () => {
             numArr.pop();
             currentNum = parseInt(numArr.join(''));
             populateDisplay(parseInt(numArr.join('')));
+        }
+    });
+};
+
+const decimalFunction = () => {
+    const decimal = document.querySelector('#decimal');
+    decimal.addEventListener('click', function(e) {
+        if (!numArr.find(value => value === '.')) {
+            numArr.push('.');
+            populateDisplay(numArr.join(''));
         }
     });
 };
@@ -132,6 +143,7 @@ const run = () => {
     equalFunction();
     clearFunction();
     backspaceFunction();
+    decimalFunction();
 };
 
 run();

@@ -46,7 +46,10 @@ const operatorFunction = () => {
                 if (totalNum && prevOp != '=') {
                     result = operate(totalNum, prevOp, currentNum);
                     populateDisplay(result);
-                    totalNum = result;
+                    if (Number.isInteger(result)) // Divide by 0 case
+                        totalNum = result;
+                    else
+                        result = totalNum;
                 } else if (prevOp === '=') {
                     totalNum = result;
                 }
@@ -67,7 +70,10 @@ const equalFunction = () => {
             result = operate(totalNum, prevOp, currentNum)
             populateDisplay(result);
             numArr.length = 0;
-            totalNum = result;
+            if (Number.isInteger(result)) // Dvide by 0 case
+                totalNum = result;
+            else
+                result = totalNum;
         }
         prevOp = equal.value;
         // If no value, then nothing happens.
@@ -95,7 +101,10 @@ const operate = (a, op, b) => {
         case '*':
             return multiply (a, b);
         case '/':
-            return divide (a, b);
+            if (b != 0)
+                return divide (a, b);
+            else
+                return 'BRUH';
     }
     return 'error';
 };

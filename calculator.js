@@ -92,6 +92,17 @@ const clearFunction = () => { // Resets stored values to default state
     });
 };
 
+const backspaceFunction = () => {
+    const backspace = document.querySelector('#backspace');
+    backspace.addEventListener('click', function(e) {
+        if (numArr.length > 0) {
+            numArr.pop();
+            currentNum = parseInt(numArr.join(''));
+            populateDisplay(parseInt(numArr.join('')));
+        }
+    });
+};
+
 const operate = (a, op, b) => {
     switch (op) {
         case '+':
@@ -120,6 +131,7 @@ const run = () => {
     operatorFunction();
     equalFunction();
     clearFunction();
+    backspaceFunction();
 };
 
 run();

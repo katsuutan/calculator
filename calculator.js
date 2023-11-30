@@ -61,11 +61,14 @@ const operatorFunction = () => {
 const equalFunction = () => {
     const equal = document.querySelector('#equal');
     equal.addEventListener('click', function(e) {
-        result = operate(totalNum, prevOp, currentNum)
-        populateDisplay(result);
-        numArr.length = 0;
-        totalNum = result;
+        if (prevOp != '=' && prevOp != null) { // Checks to see if there's an initial value to run
+            result = operate(totalNum, prevOp, currentNum)
+            populateDisplay(result);
+            numArr.length = 0;
+            totalNum = result;
+        }
         prevOp = equal.value;
+        // If no value, then nothing happens.
     })
 };
 
@@ -80,7 +83,7 @@ const operate = (a, op, b) => {
         case '/':
             return divide (a, b);
     }
-    return 'Error: operate() operator invalid';
+    return 'error';
 };
 
 const populateDisplay = (value) => {

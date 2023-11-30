@@ -42,17 +42,19 @@ const operatorFunction = () => {
 
     operatorArr.forEach((operator) => {
         operator.addEventListener('click', function(e) {
-            if (totalNum && prevOp != '=') {
-                result = operate(totalNum, prevOp, currentNum);
-                populateDisplay(result);
-                totalNum = result;
-            } else if (prevOp === '=') {
-                totalNum = result;
+            if (numArr.length){ // Checked for any number input, fixes repeated pressing of operator buttons.
+                if (totalNum && prevOp != '=') {
+                    result = operate(totalNum, prevOp, currentNum);
+                    populateDisplay(result);
+                    totalNum = result;
+                } else if (prevOp === '=') {
+                    totalNum = result;
+                }
+                else { // First operation use only
+                    totalNum = currentNum;
+                }
+                numArr.length = 0; // Resets numArr to store a different number
             }
-            else { // First operation use only
-                totalNum = currentNum;
-            }
-            numArr.length = 0; // Resets numArr to store a different number
             prevOp = operator.value; // Stores the operator value
         });
     });
@@ -70,6 +72,18 @@ const equalFunction = () => {
         prevOp = equal.value;
         // If no value, then nothing happens.
     })
+};
+
+const clearFunction = () => { // Resets stored values to default state
+    const clear = document.querySelector('#clear');
+    clear.addEventListener('click', function(e) {
+        totalNum = null;
+        currentNum = 0;
+        result = 0;
+        numArr.length = 0;
+        prevOp = null;
+        populateDisplay('');
+    });
 };
 
 const operate = (a, op, b) => {
@@ -96,6 +110,7 @@ const run = () => {
     buttonFunction();
     operatorFunction();
     equalFunction();
+    clearFunction();
 };
 
 run();
